@@ -1,21 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Test1Jsx from './components/test1';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Test1Jsx/>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://www.pngegg.com/es/png-sujmc"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          To download the img
         </a>
       </header>
     </div>
