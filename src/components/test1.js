@@ -1,11 +1,8 @@
-import vader from '../vader.png'
 
 const Test1Jsx = () =>{
-    const src = vader
-
     return (
         <picture>
-            <img src={src} alt={`Sith 1`} />
+            <img src={'./images/vader.png'} alt={`Sith 1`} />
             Darth Vader
         </picture>
     )

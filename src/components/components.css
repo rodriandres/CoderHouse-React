@@ -1,0 +1,23 @@
+.NavBar {
+    height: 20%;
+    display: flex;
+    background-color: gray;
+    justify-content: space-around;
+    align-items: center;
+    background: greenyellow;
+}
+
+.option{
+    text-decoration: none;
+    border-radius: 25;
+    margin:0 50px;
+    width: auto;
+    padding: 12px;
+    font-size: 16px;
+    font-family:fantasy;
+    background-color: blue;
+}
+
+.vader{
+    height: 100px;
+}
