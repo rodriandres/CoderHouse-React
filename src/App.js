@@ -1,11 +1,12 @@
 import './App.css';
-import Test1Jsx from './components/test1';
 import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
 
 function App() {
   return (
     <div className="App">
       <NavBar/>
+      <ItemListContainer greeting="Item" />
     </div>
   );
 }
