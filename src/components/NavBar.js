@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import "./components.css";
 import CartWidget from './CartWidget';
 
@@ -7,15 +8,21 @@ const NavBar = () =>{
         <nav className="NavBar">
             <div>
                 <img className="vader" src={'./images/vader.png'} alt={`Logo`} />
-                <p>Runeate Place</p>
+                <h2>Ilum</h2>
+                <p>Look for your kyber cristal here!!</p>
             </div>
         
-            <button className="option">Camisas</button>
-            <button className="option">Camperas</button>
-            <button className="option">Pantalones</button>
+            <button className="option">Cristales</button>
+            <button className="option">Monturas</button>
+            <button className="option">Accesorios</button>
             <CartWidget label="10"/>
         </nav>
     )
+}
+
+
+NavBar.prototypes = {
+    label: PropTypes.number,
 }
 
 export default NavBar;

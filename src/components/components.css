@@ -1,22 +1,63 @@
+body{
+    background-color: gainsboro;
+}
+
 .NavBar {
     height: 20%;
     display: flex;
     background-color: gray;
     justify-content: space-around;
     align-items: center;
-    background: greenyellow;
+    background-image: url("../../public/images/ilum1.jpg");
 }
 
 .option{
     text-decoration: none;
-    border-radius: 25;
+    border-radius: 25px;
     margin:0 50px;
     width: auto;
     padding: 12px;
     font-size: 16px;
     font-family:fantasy;
     color: white;
-    background-color: blue;
+    background-color: gray;
+}
+
+.div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div__button{
+    margin: 1%;
+    background-color:black !important;
+    color:white !important;
+}
+
+.div--Itemlistcontainer{
+    border: 5px solid #000;
+    width: 30%;
+    margin: 1%;
+}
+
+.div--listoOfItems{
+    display: flex;
+    flex: row;
+    flex-wrap: wrap;
+}
+
+.div__cart--button{
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.div__cart--text{
+    display: inline-block;
+    margin: 10px;
+    font-family: verdana;
+    font-size: 12px
 }
 
 .vader{
