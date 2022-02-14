@@ -7,9 +7,9 @@ const CartWidget = ({ label }) =>{
 
     return (
         <div>
-            <button>
+            <button className="div__cart--button">
                 <Icon icon={cart}/>
-                <p style={{ display: "inline-block", margin: "10px", fontFamily: "verdana", fontSize: "12px" }}> {label} </p>  
+                <p className="div__cart--text"> {label} </p>  
             </button>
             
         </div>
