@@ -9,9 +9,9 @@ function Main() {
         <NavBar/>
         <div className='div--listoOfItems'>
             <ItemListContainer greeting="Cristal Azul" />
-            <ItemListContainer greeting="Cristal Rojo" />
+            {/* <ItemListContainer greeting="Cristal Rojo" />
             <ItemListContainer greeting="Cristal Amarillo" />
-            <ItemListContainer greeting="Cristal Violeta" />
+            <ItemListContainer greeting="Cristal Violeta" /> */}
         </div>
     </div>
   );
