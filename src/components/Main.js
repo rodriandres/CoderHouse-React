@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
-import ItemListContainer from './ItemListContainer';
+// import ItemListContainer from './ItemListContainer';
+import ItemDetailContainer from './ItemDetailContainer';
 
 function Main() {
 
@@ -8,10 +9,8 @@ function Main() {
     <div className="App">
         <NavBar/>
         <div className='div--listoOfItems'>
-            <ItemListContainer greeting="Cristal Azul" />
-            {/* <ItemListContainer greeting="Cristal Rojo" />
-            <ItemListContainer greeting="Cristal Amarillo" />
-            <ItemListContainer greeting="Cristal Violeta" /> */}
+            {/* <ItemListContainer greeting="Cristal Azul" /> */}
+            <ItemDetailContainer greeting="Cristales"/>
         </div>
     </div>
   );
