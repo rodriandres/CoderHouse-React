@@ -23,6 +23,7 @@ const Item = ({ itemData }) =>{
         {product &&
             <div>
                 <p>{product.title}</p>
+                <img className="itemDetail-img" src={product.pictureUrl}/>
                 <ItemCount stock={product.stock} initial={1} onAdd={onAddHandler}/>
             </div>
         }

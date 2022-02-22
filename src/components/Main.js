@@ -9,7 +9,7 @@ function Main() {
     <div className="App">
         <NavBar/>
         <div className='div--listoOfItems'>
-            {/* <ItemListContainer greeting="Cristal Azul" /> */}
+            {/* <ItemListContainer greeting="Cristales" /> */}
             <ItemDetailContainer greeting="Cristales"/>
         </div>
     </div>
