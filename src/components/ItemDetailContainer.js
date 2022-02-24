@@ -3,7 +3,7 @@ import "./components.css";
 import ItemDetail from "./Item/ItemDetail";
 import { getItem } from '../mocks/asyncmock';
 
-const ItemDetailContainer = ({ greeting }) =>{
+const ItemDetailContainer = ({ greeting, routing }) =>{
     const [
         item,
         setItem
@@ -16,12 +16,12 @@ const ItemDetailContainer = ({ greeting }) =>{
         });
     }, [])
 
-    console.log(item);
-
     return ( 
-        <div className="div--Itemlistcontainer">
+        <div className="div--Itemlist">
             <h1>{greeting}</h1>
-            <ItemDetail item={item}/>
+            <div className="div--Itemlistcontainer">
+                <ItemDetail item={item} routing={routing}/>
+            </div>
         </div>
     )
 }

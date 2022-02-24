@@ -6,8 +6,8 @@ const ItemDetail = ({ item }) =>{
         <div>
             <h3>{item.title}</h3>
             <img className="itemDetail-img" src={item.pictureUrl}/>
-            <p>Descripción: {item.description}</p>
-            <p>Precion: {item.price}</p>
+            {item.description && <p>Descripción: {item.description}</p>}
+            {item.price && <p>Precio: {item.price}</p>}
         </div>
     )
 }

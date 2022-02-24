@@ -1,23 +1,14 @@
 import "../components.css";
 import Item from "./Item";
-import { useEffect, useState } from "react";
 
-
-const ItemList = ({ item }) =>{
-    const [
-        product,
-        setProduct
-    ] = useState({});
-
-    useEffect(()=>{
-        setProduct(item)
-        console.log(product)
-    });
-
+const ItemList = ({ items, routing }) =>{
+    console.log(items)
     return (
-        <div>
-            <Item itemData={product}/>
-        </div>
+        <ul>
+            {items.map(( product )=>{
+                <Item key={product.id} itemData={product} routing={routing}/>
+            })}    
+        </ul>
     )
 }
 
