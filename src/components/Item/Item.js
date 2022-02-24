@@ -1,31 +1,24 @@
-
-import { useEffect, useState } from "react";
 import "../components.css";
+import { Link } from "react-router-dom";
 // import ItemCount from "./ItemCount";
 
-const Item = ({ itemData, routing }) =>{
-    const [
-        product,
-        setProduct
-    ] = useState({});
-
+const Item = ({ itemData }) =>{
     // const onAddHandler = (quantity) => {
     //     console.log(`Se agregaron ${quantity} productos al carrito`)
     // }
 
-    useEffect(()=>{
-        setProduct(itemData)
-        console.log(product)
-    });
 
     return (
         <div>
-        {product &&
+        {itemData &&
             <div className="item">
-                <p>{product.title}</p>
-                <img className="itemDetail-img" src={product.pictureUrl}/>
+                <p>{itemData.title}</p>
+                <img className="itemDetail-img" src={itemData.pictureUrl}/>
+                <p>Categoria: {itemData.category}</p>
                 {/* <ItemCount stock={product.stock} initial={1} onAdd={onAddHandler}/> */}
-                <button className="option" onClick={() => routing({id: product.id, path: 'detail'})}>Ver detalle</button>
+                <footer>
+                    <Link to={`/detail/${itemData.id}`} className="option">Ver detalle</Link>
+                </footer>
             </div>
         }
         </div>

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import "./components.css";
 import CartWidget from './CartWidget';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () =>{
 
@@ -12,9 +13,9 @@ const NavBar = () =>{
                 <p>Look for your kyber cristal here!!</p>
             </div>
         
-            <button className="option">Cristales</button>
-            <button className="option">Monturas</button>
-            <button className="option">Accesorios</button>
+            <NavLink className={({ isActive }) => isActive ? 'option-active' : 'option'} to={'/category/Cristales'}>Cristales</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'option-active' : 'option'} to={'/category/Monturas'}>Monturas</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'option-active' : 'option'} to={'/category/Accesorios'}>Accesorios</NavLink>
             <CartWidget label="10"/>
         </nav>
     )

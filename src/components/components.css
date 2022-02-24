@@ -22,6 +22,17 @@ body{
     background-color: gray;
 }
 
+.option-active{
+    text-decoration: none;
+    border-radius: 25px;
+    margin:0 50px;
+    padding: 12px;
+    font-size: 16px;
+    font-family:fantasy;
+    color: white;
+    background-color: green;
+}
+
 .div{
     display: flex;
     flex-direction: row;
