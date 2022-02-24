@@ -13,7 +13,7 @@ function Main() {
             <Routes>
                 <Route path='/' element={<ItemListContainer greeting={"Lista"}/>}/>
                 <Route path='/category/:categoryId' element={<ItemListContainer greeting={"Lista"}/>}/>
-                <Route path='/detail/:productId' element={<ItemDetailContainer greeting={"Detalle"}/>}/>
+                <Route path='/item/:productId' element={<ItemDetailContainer greeting={"Detalle"}/>}/>
               </Routes>
           </div>
       </div>

@@ -17,7 +17,7 @@ const Item = ({ itemData }) =>{
                 <p>Categoria: {itemData.category}</p>
                 {/* <ItemCount stock={product.stock} initial={1} onAdd={onAddHandler}/> */}
                 <footer>
-                    <Link to={`/detail/${itemData.id}`} className="option">Ver detalle</Link>
+                    <Link to={`/item/${itemData.id}`} className="option">Ver detalle</Link>
                 </footer>
             </div>
         }

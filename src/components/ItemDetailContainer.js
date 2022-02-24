@@ -3,6 +3,7 @@ import "./components.css";
 import ItemDetail from "./Item/ItemDetail";
 import { getProduct } from '../mocks/asyncmock';
 import { useParams } from "react-router-dom";
+import ItemNotFound from "./Error/ItemNotFound";
 
 const ItemDetailContainer = ({ greeting }) =>{
     const [ product, setProduct ] = useState({});
@@ -25,7 +26,7 @@ const ItemDetailContainer = ({ greeting }) =>{
         <div className="div--Itemlist">
             <h1>{greeting}</h1>
             <div className="div--Itemlistcontainer">
-                <ItemDetail product={product}/>
+                {product? <ItemDetail product={product}/> : <ItemNotFound itemId={productId} /> }
             </div>
         </div>
     )
