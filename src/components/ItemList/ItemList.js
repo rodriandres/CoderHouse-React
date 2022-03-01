@@ -1,5 +1,5 @@
 import "../components.css";
-import Item from "./Item";
+import Item from "../Item/Item";
 
 const ItemList = ({ items }) =>{
     console.log(items)

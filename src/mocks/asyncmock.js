@@ -6,6 +6,12 @@ const products = [
     {id: 5, title: `Sable Skywalker`, category: 'Monturas', price: 2000, pictureUrl: `https://pm1.narvii.com/6331/2e930519bb37b471adf6e9f5e8d20aa8cd9b0be3_hq.jpg`, stock: 1, description: `Montura de sable perteneciente a la familia skywalker por generaciones`},
     {id: 6, title: `Sable de obi wan`, category: 'Monturas', price: 1999, pictureUrl: `https://m.media-amazon.com/images/I/31O9fCj05yL.jpg`, stock: 1, description: `Montura de sable perteneciente al mismisimo obiwan kenobi o ben para los cuates`},
 ]
+
+const categories = [
+    {id: 1, name: "Cristales"},
+    {id: 2, name: "Monturas"},
+    {id: 3, name: "Accesorios"},
+]
     
 
 export const getProducts = (categoryId) => {
@@ -26,6 +32,14 @@ export const getProduct = (id) => {
         const item = products.find(p => p.id === parseInt(id));
         setTimeout(() => {
             res(item);
+        }, 2000);
+    })
+};
+
+export const getCategories = () => {
+    return new Promise((res) =>{
+        setTimeout(() => {
+            res(categories);
         }, 2000);
     })
 };

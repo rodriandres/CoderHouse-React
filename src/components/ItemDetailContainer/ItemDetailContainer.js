@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./components.css";
-import ItemDetail from "./Item/ItemDetail";
-import { getProduct } from '../mocks/asyncmock';
+import "../components.css";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { getProduct } from '../../mocks/asyncmock';
 import { useParams } from "react-router-dom";
-import ItemNotFound from "./Error/ItemNotFound";
+import ItemNotFound from "../Error/ItemNotFound";
 
 const ItemDetailContainer = ({ greeting }) =>{
     const [ product, setProduct ] = useState({});

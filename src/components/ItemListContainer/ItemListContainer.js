@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./components.css";
-import ItemList from "./Item/ItemList";
-import { getProducts } from '../mocks/asyncmock';
+import "../components.css";
+import ItemList from "../ItemList/ItemList";
+import { getProducts } from '../../mocks/asyncmock';
 import { useParams } from "react-router-dom";
-import CategoryNotAvariable from './Error/CategoryNotAvariable';
+import CategoryNotAvariable from '../Error/CategoryNotAvariable';
 
 const ItemListContainer = ({ greeting }) =>{
     const [ products, setProducts] = useState([]);
@@ -22,7 +22,6 @@ const ItemListContainer = ({ greeting }) =>{
         })
     }, [categoryId])
 
-    console.log("you get it")
     return ( 
         <div className="div--Itemlist">
             <h1>{greeting}</h1>
