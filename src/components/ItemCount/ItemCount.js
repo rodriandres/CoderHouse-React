@@ -1,4 +1,4 @@
-import "../components.css";
+import "../components.scss";
 import { Icon } from 'react-icons-kit'
 import {plus} from 'react-icons-kit/icomoon/plus'
 import {minus} from 'react-icons-kit/icomoon/minus'

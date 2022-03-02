@@ -1,4 +1,4 @@
-import "../components.css";
+import "../components.scss";
 
 const ItemNotFound = ({ itemId }) =>{
 

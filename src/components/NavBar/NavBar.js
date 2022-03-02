@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "../components.css";
+import "../components.scss";
 import CartWidget from '../CartWidget';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -19,12 +19,12 @@ const NavBar = () =>{
     }, [])
 
     return (
-        <nav className="NavBar">
-            <div>
-                <NavLink to={`/`}>
+        <nav className="navbar">
+            <div className='navbar__logo'>
+                <NavLink className='navbar__navlink' to={`/`}>
                     <img className="vader" src={'./images/vader.png'} alt={`Logo`} />
-                    <h2>Ilum</h2>
-                    <p>Look for your kyber cristal here!!</p>
+                    <h2 className='navbar__navlink--text'>Zetark</h2>
+                    <p className='navbar__navlink--text'>Your far far away armery!!</p>
                 </NavLink>
             </div>
             <div>
@@ -34,8 +34,10 @@ const NavBar = () =>{
                     {cat.name}
                 </NavLink> )}
             </div>
-        
-            <CartWidget label="10"/>
+            <NavLink to={`/cart`}>
+                <CartWidget/>    
+            </NavLink>
+            
         </nav>
     )
 }

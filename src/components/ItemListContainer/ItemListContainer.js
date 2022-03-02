@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../components.css";
+import "../components.scss";
 import ItemList from "../ItemList/ItemList";
 import { getProducts } from '../../mocks/asyncmock';
 import { useParams } from "react-router-dom";
@@ -13,7 +13,7 @@ const ItemListContainer = ({ greeting }) =>{
         getProducts(categoryId)
         .then( (item)=>{
             setProducts(item);
-        }).catch( e =>
+        }).catch( (e) =>
             console.log(e)
         );
 
@@ -23,12 +23,10 @@ const ItemListContainer = ({ greeting }) =>{
     }, [categoryId])
 
     return ( 
-        <div className="div--Itemlist">
-            <h1>{greeting}</h1>
-            <div className="div--Itemlistcontainer">   
-                {products?.length ? <ItemList items={products}/> : <CategoryNotAvariable category={categoryId} /> }   
-            </div>
-            
+        <div className="itemListContainer">
+            <h1>{greeting}</h1>      
+            {products?.length ? <ItemList items={products}/> :  <CategoryNotAvariable category={categoryId}/> }  
+        
         </div>
     )
 }
