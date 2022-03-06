@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import CartContext from '../../context/CartContext';
 
 const ItemDetail = ({ product }) =>{
-    const { addItem} = useContext(CartContext);
+    const { addItem } = useContext(CartContext);
 
     const [
         buyAmount,
@@ -28,7 +28,7 @@ const ItemDetail = ({ product }) =>{
             {product.stock && <p>Quantity Available: {product.stock}</p>}
             {product.price? 
             <div>
-                {buyAmount > 0 ? <Link quantity={buyAmount} to={`/cart`} className="option">To my cart</Link> : 
+                {buyAmount > 0 ? <Link quantity={buyAmount} to={`/cart`} className="option">Finish my buys</Link> : 
                 <ItemCount stock={product.stock} initial={1} onAdd={onAddHandler}/>}
             </div>:
             null}

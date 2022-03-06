@@ -2,13 +2,17 @@ import PropTypes from 'prop-types';
 import "../components.scss";
 import CartWidget from '../CartWidget';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getCategories } from '../../mocks/asyncmock';
+import CartContext from '../../context/CartContext';
 
 const NavBar = () =>{
+    const { cartQuantity, setCartQuantity } = useContext(CartContext);
     const [categories, setCategories] = useState([]);
 
     useEffect( ()=>{
+        setCartQuantity(cartQuantity);
+
         getCategories()
         .then( (catego)=>{
             setCategories(catego);
@@ -16,7 +20,7 @@ const NavBar = () =>{
             console.log(e)
         );
 
-    }, [])
+    }, [cartQuantity])
 
     return (
         <nav className="navbar">
@@ -35,7 +39,7 @@ const NavBar = () =>{
                 </NavLink> )}
             </div>
             <NavLink to={`/cart`}>
-                <CartWidget/>    
+                {cartQuantity > 0 && <CartWidget/>}    
             </NavLink>
             
         </nav>

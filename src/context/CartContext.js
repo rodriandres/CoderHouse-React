@@ -16,15 +16,18 @@ export const CartContextProvider = ({ children }) => {
             let cartList = cart;
             cartList.push({product, quantityToAdd})
             setCart(cartList);
-            setCartQuantity(cartQuantity + 1);
+            setCartQuantity(cartQuantity + quantityToAdd);
         }
     })
 
     const removeItem =((productIdToRemove) => {
         if(isInCart(productIdToRemove)){
-            const cartItems = cart.filter(p => p.product.id !== productIdToRemove)
+
+            const cartItems = cart.filter(p => p.product.id !== productIdToRemove);
+            let quantity = cart.find(p => p.product.id == productIdToRemove).quantityToAdd;
+            console.log(quantity)
             setCart(cartItems)
-            setCartQuantity(cartQuantity - 1);
+            setCartQuantity(cartQuantity - quantity);
         }else {
             console.log("El producto no en tu carrito");
         }

@@ -3,6 +3,25 @@ body{
     background-image: url('https://i.pinimg.com/564x/7c/68/13/7c68138bc3aa506fa7868b91654fb212.jpg');
 }
 
+h1{
+    background-color: #fff;
+}
+
+h2{
+    background-color: #000;
+    color: #fff;
+}
+
+h3{
+    color: #000;
+    background-color: #fff;
+}
+
+p{
+    color: #000;
+    background-color: #fff;
+}
+
 .navbar {
     height: 20%;
     display: flex;
@@ -10,18 +29,20 @@ body{
     justify-content: space-around;
     align-items: center;
     background-image: url("https://i.pinimg.com/564x/e3/51/c5/e351c5a041910b06b893c1d7eda6ba2e.jpg");
+    border: 5px solid #000;
 
     &__logo{
         text-decoration: none;
         &--decoration{
             color: azure;
-            text-decoration: none;;
+            text-decoration: none;
         }
     }
 
     &__navlink{
         text-decoration: none;
         &--text{
+            background-color: #000;
             color: azure;
         }
     }
