@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const Cart = () =>{
 
-    const { cart, removeItem, clearState } = useContext(CartContext);
-    
+    const { cart, removeItem, clearState, totalPrice } = useContext(CartContext);
+
     return (
         <ul>
             {cart.length > 0 && <button type="button" onClick={()=>clearState()}>Remove all productos of my cart</button>}
@@ -28,6 +28,7 @@ const Cart = () =>{
             </div> }  
             {cart.length > 0 &&
                    <div>
+                        <h2>Total Price: ${totalPrice}</h2>
                         <button onClick={() => console.log("COMPRASTE TODO!")}><h1>Buy it!</h1></button>
                     </div>
             }

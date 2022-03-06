@@ -5,13 +5,8 @@ import {minus} from 'react-icons-kit/icomoon/minus'
 import { useEffect, useState } from "react";
 
 const ItemCount = ( {stock = 1, initial = 1, onAdd } ) =>{
-    const [
-        itemCount,
-        setItemCount,
-    ] = useState(0);
+    const [ itemCount, setItemCount, ] = useState(0);
 
-
-    
     useEffect(() => {
         setItemCount(initial);
     }, [])
