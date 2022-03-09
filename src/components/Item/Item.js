@@ -7,7 +7,7 @@ const Item = ({ itemData }) =>{
         <div className="itemListContainer__div--ulItem">
         {itemData &&
             <div className="item">
-                <p>{itemData.title}</p>
+                <p>{itemData.name}</p>
                 <img className="itemDetail-img" src={itemData.pictureUrl}/>
                 <p>Categoria: {itemData.category}</p>
                 <footer>

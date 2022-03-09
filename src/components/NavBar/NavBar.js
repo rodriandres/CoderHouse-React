@@ -3,8 +3,9 @@ import "../components.scss";
 import CartWidget from '../CartWidget';
 import { NavLink } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { getCategories } from '../../mocks/asyncmock';
 import CartContext from '../../context/CartContext';
+import { db } from "../../services/firebase/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 const NavBar = () =>{
     const { cartQuantity, setCartQuantity } = useContext(CartContext);
@@ -13,10 +14,15 @@ const NavBar = () =>{
     useEffect( ()=>{
         setCartQuantity(cartQuantity);
 
-        getCategories()
-        .then( (catego)=>{
+        getDocs(collection(db, 'categories'))
+        .then( (response)=>{
+            const catego = response.docs.map(cat =>{
+                    console.log(cat)
+                    return {id: cat.id, ...cat.data()}
+                })
             setCategories(catego);
-        }).catch( e =>
+            
+        }).catch( (e) =>
             console.log(e)
         );
 

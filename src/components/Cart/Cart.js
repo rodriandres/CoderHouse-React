@@ -12,7 +12,7 @@ const Cart = () =>{
             {cart.length > 0 && <button type="button" onClick={()=>clearState()}>Remove all productos of my cart</button>}
             {cart?.length ? cart.map(( item ) =>(
                     <div key={item.product.id}>
-                        <h2>{item.product.title}</h2>
+                        <h2>{item.product.name}</h2>
                         <img className="itemDetail-img" src={item.product.pictureUrl}/>
                         <p>Category: {item.product.category}</p>
                         <p>Quantity: {item.quantityToAdd}</p>

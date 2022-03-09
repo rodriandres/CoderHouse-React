@@ -20,7 +20,7 @@ const ItemDetail = ({ product }) =>{
 
     return (
         <div>
-            <h3>{product.title}</h3>
+            <h3>{product.name}</h3>
             <img className="itemDetail-img" src={product.pictureUrl}/>
             {product.category && <p>Category: {product.category}</p>}
             {product.description && <p>Description: {product.description}</p>}
