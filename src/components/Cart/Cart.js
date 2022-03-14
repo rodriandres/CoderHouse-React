@@ -40,14 +40,14 @@ const Cart = () =>{
         }
 
         console.log(order);
-        
-        //addDoc(collection(db, 'orders'), order).then((response)=>{ console.log(response), clearState(), setProcessingOrder(false);});
  
         // getDocs(collection(db, 'orders')).then((res)=>{
+
+            
         //     const products = res.docs.map(doc =>{
         //         return {id: doc.id, ...doc.data()}
         //     })
-
+        //     console.log(products)
         //     updateDoc(doc(db,'orders', products[0].id), order).then((response)=>{ 
         //         console.log(response)
         //         clearState()
@@ -56,22 +56,16 @@ const Cart = () =>{
 
         // });
 
-        updateOrder();
+        updateOrder(order);
 
     }
 
-    const updateOrder = () =>{
+    const updateOrder = (order) =>{
         const dataBase = getFirestore();
 
         const batch = writeBatch(dataBase);
 
         const outOfStock = [];
-        const order = {
-            user:contact,
-            items: cart,
-            total: totalPrice,
-            date: new Date(),
-        }
 
         order.items.forEach(prod => {
             getDoc(doc(db, 'itemCollection', prod.product.id))
@@ -91,9 +85,11 @@ const Cart = () =>{
         });
 
         if(outOfStock.length === 0){
-            addDoc(collection(db, 'orders'), order).then(()=>{
+            addDoc(collection(db, 'orders'), order).then(({id})=>{
                 batch.commit().then(()=>{
-                    console.log("success")
+                    clearState();
+                    console.log(id)
+                    console.log(`success, your buy id is: ${id}`)
                 }).catch(e =>{
                     console.log(e)
                 }).finally(()=>{
