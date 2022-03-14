@@ -11,8 +11,6 @@ const CartWidget = () =>{
         setCartQuantity(0);
     }, [])
 
-    console.log(cartQuantity);
-
     return (
         <div>
             <button className="div__cart--button">
