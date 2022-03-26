@@ -17,7 +17,6 @@ const NavBar = () =>{
         getDocs(collection(db, 'categories'))
         .then( (response)=>{
             const catego = response.docs.map(cat =>{
-                    console.log(cat)
                     return {id: cat.id, ...cat.data()}
                 })
             setCategories(catego);

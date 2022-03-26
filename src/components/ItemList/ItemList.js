@@ -6,7 +6,7 @@ const ItemList = ({ items }) =>{
     return (
         <div className="itemListContainer__div">
             {items.map(( product ) =>(
-                <Item key={product.id} itemData={product}/>
+                product.stock > 0 && <Item key={product.id} itemData={product}/>
             ))}  
         </div>  
     )

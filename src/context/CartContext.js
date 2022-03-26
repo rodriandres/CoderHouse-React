@@ -33,7 +33,7 @@ export const CartContextProvider = ({ children }) => {
             setCart(cartItems)
             setCartQuantity(cartQuantity - quantity);
         }else {
-            console.log("El producto no en tu carrito");
+            console.log("El producto no esta en tu carrito");
         }
     })
 
