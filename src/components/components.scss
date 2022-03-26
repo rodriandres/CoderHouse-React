@@ -1,0 +1,172 @@
+body{
+    background-color: gainsboro;
+    background-image: url('https://i.pinimg.com/564x/7c/68/13/7c68138bc3aa506fa7868b91654fb212.jpg');
+}
+
+h1{
+    background-color: #fff;
+}
+
+h2{
+    background-color: #000;
+    color: #fff;
+}
+
+h3{
+    color: #000;
+    background-color: #fff;
+}
+
+p{
+    color: #000;
+    background-color: #fff;
+}
+
+.navbar {
+    height: 20%;
+    display: flex;
+    background-color: gray;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url("https://i.pinimg.com/564x/e3/51/c5/e351c5a041910b06b893c1d7eda6ba2e.jpg");
+    border: 5px solid #000;
+
+    &__logo{
+        text-decoration: none;
+        &--decoration{
+            color: azure;
+            text-decoration: none;
+        }
+    }
+
+    &__navlink{
+        text-decoration: none;
+        &--text{
+            background-color: #000;
+            color: azure;
+        }
+    }
+
+}
+
+.option{
+    text-decoration: none;
+    border-radius: 25px;
+    margin:0 50px;
+    padding: 12px;
+    font-size: 16px;
+    font-family:fantasy;
+    color: white;
+    background-color: gray;
+}
+
+.option-active{
+    text-decoration: none;
+    border-radius: 25px;
+    margin:0 50px;
+    padding: 12px;
+    font-size: 16px;
+    font-family:fantasy;
+    color: white;
+    background-color: green;
+}
+
+.div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemListContainer{
+    width: 100%;
+    border: 5px solid #000;
+    margin: 1%;
+
+    &__div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        background-color: aliceblue;
+        margin: 1%;
+        padding: 1%;
+        flex-wrap: wrap;
+        
+        &--itemList{
+            width: 100%;
+            border: 5px solid #000;
+            margin: 1%;
+        }
+
+        
+        &--ulItem{
+            display: flex;
+            flex-basis: 25%;
+            justify-content: center;
+        }
+
+    }
+
+    &__ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: aliceblue;
+        flex-wrap: wrap;
+        margin: 1%;
+
+    }
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    border: 5px solid #000;
+    padding: 10%;
+    margin-top: 10%;
+}
+
+.div__button{
+    margin: 1%;
+    background-color:black !important;
+    color:white !important;
+}
+
+.div--listoOfItems{
+    display: flex;
+    flex: row;
+    flex-wrap: wrap;
+}
+
+.div__cart--button{
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.div__cart--text{
+    display: inline-block;
+    margin: 10px;
+    font-family: verdana;
+    font-size: 12px
+}
+
+.vader{
+    height: 100px;
+}
+
+.itemDetail-img{
+    height: 200px;
+    border: red 1px solid;
+}
+
+
+.item-list-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.itemDetailContainer{
+    width: 500px;
+}
