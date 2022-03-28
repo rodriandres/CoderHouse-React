@@ -6,10 +6,13 @@ import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../context/CartContext';
 import { db } from "../../services/firebase/firebase";
 import { getDocs, collection } from "firebase/firestore";
+import { useNotificationServices } from '../../services/notifications/NotificationsServices';
 
 const NavBar = () =>{
     const { cartQuantity, setCartQuantity } = useContext(CartContext);
     const [categories, setCategories] = useState([]);
+
+    const setNotification = useNotificationServices();
 
     useEffect( ()=>{
         setCartQuantity(cartQuantity);
@@ -21,8 +24,12 @@ const NavBar = () =>{
                 })
             setCategories(catego);
             
-        }).catch( (e) =>
+        }).catch( (e) =>{ 
+            setNotification('error',`ERROR: ${e}`)
+
+            // TODO: borrar console
             console.log(e)
+        }
         );
 
     }, [cartQuantity])

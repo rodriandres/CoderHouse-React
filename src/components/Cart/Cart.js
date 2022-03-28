@@ -2,13 +2,11 @@ import { useContext, useState } from "react";
 import "../components.scss";
 import CartContext from '../../context/CartContext';
 import { Link } from "react-router-dom";
-import { db } from "../../services/firebase/firebase";
-import {   doc, getDoc, collection, getFirestore, writeBatch, addDoc, Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 
 const Cart = () =>{
 
-    const { cart, removeItem, clearState, totalPrice } = useContext(CartContext);
-    const [processingOrder, setProcessingOrder] = useState(false);
+    const { cart, removeItem, clearState, totalPrice, processingOrder, setProcessingOrder, updateOrder } = useContext(CartContext);
     const [ contact, setContact] = useState({
         name: '',
         phone: '',
@@ -40,65 +38,12 @@ const Cart = () =>{
         }
 
         console.log(order);
- 
-        // getDocs(collection(db, 'orders')).then((res)=>{
-
-            
-        //     const products = res.docs.map(doc =>{
-        //         return {id: doc.id, ...doc.data()}
-        //     })
-        //     console.log(products)
-        //     updateDoc(doc(db,'orders', products[0].id), order).then((response)=>{ 
-        //         console.log(response)
-        //         clearState()
-        //         setProcessingOrder(false);
-        //     });
-
-        // });
 
         updateOrder(order);
 
     }
 
-    const updateOrder = (order) =>{
-        const dataBase = getFirestore();
-
-        const batch = writeBatch(dataBase);
-
-        const outOfStock = [];
-
-        order.items.forEach(prod => {
-            getDoc(doc(db, 'itemCollection', prod.product.id))
-            .then((res) => {
-                if(res.data().stock >= prod.quantityToAdd){
-                    batch.update(doc(db, 'itemCollection', res.id), {
-                        stock: res.data().stock - prod.quantityToAdd
-                    });
-                } else {
-                    outOfStock.push({
-                        id: res.id,
-                        ...res.data()
-                    })
-                    console.log(outOfStock)
-                }
-            })
-        });
-
-        if(outOfStock.length === 0){
-            addDoc(collection(db, 'orders'), order).then(({id})=>{
-                batch.commit().then(()=>{
-                    clearState();
-                    console.log(id)
-                    console.log(`success, your buy id is: ${id}`)
-                }).catch(e =>{
-                    console.log(e)
-                }).finally(()=>{
-                    setProcessingOrder(false);
-                });
-            })
-        }
-        
-    }
+ 
 
 
     return (

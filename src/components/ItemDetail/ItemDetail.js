@@ -3,19 +3,42 @@ import "../components.scss";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import CartContext from '../../context/CartContext';
+import { Timestamp } from "firebase/firestore";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
 const ItemDetail = ({ product }) =>{
-    const { addItem } = useContext(CartContext);
+    const { cart, totalPrice, addItem, updateOrder } = useContext(CartContext);
 
     const [
         buyAmount,
         setBuyAmount,
     ] = useState(0);
 
+    const setNotification = useNotificationServices();
+
     const onAddHandler = (quantityToAdd) => {
+        // const order = {
+        //     user: {
+        //         name: 'rodri',
+        //         phone: '1125262134',
+        //         address: 'guatemala 23',
+        //         email: 'rodriguatemala@hotmail.com',
+        //         comment: 'ALTOS PRODUCTOS ME LLEVOO',
+        //     },
+        //     items: cart,
+        //     total: totalPrice,
+        //     date: Timestamp.fromDate(new Date()),
+        // }
+
         addItem(product, quantityToAdd);
+        // updateOrder(order)
         setBuyAmount(quantityToAdd)
-        console.log(`Se agregaron ${quantityToAdd} productos al carrito`)
+
+        if(quantityToAdd > 1){
+            setNotification('success',`Se agregaron ${quantityToAdd} ${product.name} al carrito`);
+        }else{
+            setNotification('success',`Se agregó ${quantityToAdd} ${product.name} al carrito`);
+        }
     }
 
     return (

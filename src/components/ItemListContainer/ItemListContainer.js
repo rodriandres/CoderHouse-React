@@ -5,10 +5,13 @@ import { useParams } from "react-router-dom";
 import CategoryNotAvariable from '../Error/CategoryNotAvariable';
 import { db } from "../../services/firebase/firebase";
 import { getDocs, collection, query, where } from "firebase/firestore";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
 const ItemListContainer = ({ greeting }) =>{
     const [ products, setProducts] = useState([]);
     const { categoryId } = useParams();
+
+    const setNotification = useNotificationServices();
 
     useEffect(() => {
 
@@ -22,16 +25,12 @@ const ItemListContainer = ({ greeting }) =>{
                     return {id: doc.id, ...doc.data()}
                 })
             setProducts(products);
-        }).catch( (e) =>
-            console.log(e)
-        );
+        }).catch( (e) =>{
+            setNotification('error',`ERROR: ${e}`)
 
-        // getProducts(categoryId)
-        // .then( (item)=>{
-        //     setProducts(item);
-        // }).catch( (e) =>
-        //     console.log(e)
-        // );
+            // TODO: borrar console
+            console.log(e)}
+        );
 
         return (() => {
             setProducts()

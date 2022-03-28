@@ -5,10 +5,13 @@ import { useParams } from "react-router-dom";
 import ItemNotFound from "../Error/ItemNotFound";
 import { db } from "../../services/firebase/firebase";
 import { getDoc, doc } from "firebase/firestore";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
 const ItemDetailContainer = ({ greeting }) =>{
     const [ product, setProduct ] = useState({});
     const { productId } = useParams();
+
+    const setNotification = useNotificationServices();
 
     useEffect( ()=>{
 
@@ -19,8 +22,12 @@ const ItemDetailContainer = ({ greeting }) =>{
             const item = {id: response.id, ...response.data()}
             console.log(item)
             setProduct(item);
-        }).catch( (e) =>
+        }).catch( (e) =>{
+            setNotification('error',`ERROR: ${e}`)
+
+            // TODO: borrar console
             console.log(e)
+        }
         );
 
         return (() => {
