@@ -15,7 +15,6 @@ const categories = [
     
 
 export const getProducts = (categoryId) => {
-    console.log(categoryId)
     var items = products;
     if (categoryId) {
         items = products.filter(p => p.category === categoryId);

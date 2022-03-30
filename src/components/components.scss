@@ -32,6 +32,10 @@ p{
     background-color: #fff;
 }
 
+span{
+    font-family: starWars;
+}
+
 .navbar {
     height: 20%;
     display: flex;
@@ -160,18 +164,32 @@ p{
     &__button{
         margin: 1%;
         background-color:black !important;
+        color: white;
     }
 
     &__cart{
         &--button{
+            text-decoration: none;
             border-radius: 10px;
-            background-color: $backGround-button-color;
+            margin:0 50px;
+            padding: 12px;
+            font-size: 16px;
             font-family: starWars;
+            color: black;
+            background-color: $backGround-button-color;
+            border: #30373F 3px inset;
         }
 
         &--button-active{
+            text-decoration: none;
             border-radius: 10px;
+            margin:0 50px;
+            padding: 12px;
+            font-size: 16px;
+            font-family: starWars;
+            color: black;
             background-color: $active-backGround-button-color;
+            border: #30373F 3px inset;
         }
 
         &--text{

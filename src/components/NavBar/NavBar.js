@@ -46,9 +46,8 @@ const NavBar = () =>{
                     {cat.name}
                 </NavLink> )}
             </div>
-            <NavLink to={`/cart`}>
-                {cartQuantity > 0 && <CartWidget/>}    
-            </NavLink>
+            
+            {cartQuantity > 0 && <CartWidget/>}    
             
         </nav>
     )
