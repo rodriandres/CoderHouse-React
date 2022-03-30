@@ -13,8 +13,6 @@ const ItemDetailContainer = ({ title }) =>{
     const setNotification = useNotificationServices();
 
     useEffect( ()=>{
-        // TODO agregar el loading en esta linea
-        
         getProduct(productId)
         .then( (response)=>{
             setProduct(response);

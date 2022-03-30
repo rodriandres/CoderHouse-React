@@ -27,7 +27,6 @@ const ItemCount = ( {stock = 1, initial = 1, onAdd } ) =>{
             setItemCount(itemCount + 1);  
         }else{
             setNotification('warning', 'There is no more stock available for the product');
-            console.log("No hay mas stock disponible del product")
         }
     }
 
@@ -44,7 +43,7 @@ const ItemCount = ( {stock = 1, initial = 1, onAdd } ) =>{
             </div>
             <div>
                 <button className="div__button" onClick={()=>onAdd(itemCount)}>
-                    <p>Add to my Cart</p> 
+                    <span>Add to my Cart</span> 
                 </button>
             </div>
         </div>

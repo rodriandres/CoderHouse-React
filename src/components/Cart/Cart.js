@@ -83,7 +83,7 @@ const Cart = () =>{
                     <FormView contact={contact} setCompleteData={setCompleteData} />
             }
 
-            {!processingOrder && cart.length > 0 && showForm &&
+            {!processingOrder && cart.length > 0 &&
                    <div>
                         <h2>Total Price: ${totalPrice}</h2>
                         <button disabled={contact.name == '' && contact.phone == '' && contact.address == '' && contact.email == '' } onClick={()=>confirmOrder()}><h1>Confirm order</h1></button>

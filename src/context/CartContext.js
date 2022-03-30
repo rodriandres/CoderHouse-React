@@ -17,8 +17,6 @@ export const CartContextProvider = ({ children }) => {
         setTotalPrice(0)
         totalPriceCalculator();
     }, [cart.length])
-    
-    console.log(cart)
 
     const updateItemQuantity = (productId, quantityToAdd) => {
         const cartItems = cart.map(p => p.product.id === productId ? { ...p, quantityToAdd: p.quantityToAdd + quantityToAdd } : p );
@@ -73,62 +71,31 @@ export const CartContextProvider = ({ children }) => {
     }
 
     const totalPriceCalculator = () => {
-        cart.forEach(( item ) =>(
-            setTotalPrice(totalPrice + (item.product.price * item.quantityToAdd))
-        ));
+        let newPrice = 0;
+        cart.map((item) => {
+            newPrice += item.product.price * item.quantityToAdd;
+        })
+        setTotalPrice(newPrice);
     }
 
 
 
     const updateOrder = (order) =>{
-        // const dataBase = getFirestore();
-
-        // const batch = writeBatch(dataBase);
-
-        const outOfStock = [];
 
         order.items.forEach(prod => {
             getDoc(doc(db, 'itemCollection', prod.product.id))
             .then((res) => {
                 if(res.data().stock >= prod.quantityToAdd){
-                    console.log(res.data().stock);
-                    console.log(prod.quantityToAdd);
-                    // batch.update(doc(db, 'itemCollection', res.id), {
-                    //     stock: res.data().stock - prod.quantityToAdd
-                    // });
+                    addDoc(collection(db, 'orders'), order).then(({id})=>{
+                        clearState();
+                        setNotification('success',`Great! Your buy id is: ${id}`);
+                        setProcessingOrder(false);
+                })
                 } else {
-                    outOfStock.push({
-                        id: res.id,
-                        ...res.data()
-                    })
-                    console.log(outOfStock)
+                    setNotification('error',`Error! There is not such of quantity for that item`);
                 }
             })
         });
-
-        if(outOfStock.length === 0){
-            addDoc(collection(db, 'orders'), order).then(({id})=>{
-                // batch.commit().then(()=>{
-                //     clearState();
-                //     setNotification('success',`Great! Your buy id is: ${id}`);
-                //     // TODO: borrar console
-                //     console.log(`success, your buy id is: ${id}`)
-
-                // }).catch(e =>{
-                //     setNotification('error',`ERROR: ${e}`);
-
-                //     console.log(e)
-                // }).finally(()=>{
-                //     setProcessingOrder(false);
-                // });
-                    clearState();
-                    setNotification('success',`Great! Your buy id is: ${id}`);
-                    // TODO: borrar console
-                    console.log(`success, your buy id is: ${id}`)
-                    setProcessingOrder(false);
-
-            })
-        }
     }
 
     const returnProducts = (cart) => {

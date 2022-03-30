@@ -13,8 +13,6 @@ const ItemListContainer = ({ title }) =>{
     const setNotification = useNotificationServices();
 
     useEffect(() => {
-        // TODO agregar el loading en esta linea
-
         getsProducts(categoryId).then((response)=>{
             setProducts(response)
         }).catch( (e) =>{
