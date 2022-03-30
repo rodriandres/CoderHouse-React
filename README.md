@@ -72,7 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Demo
 
-                        [![StarWars E-commerce demo](https://img.youtube.com/vi/_HIfSbupoqo/0.jpg)](https://www.youtube.com/watch?v=_HIfSbupoqo)
+[![StarWars E-commerce demo](https://img.youtube.com/vi/_HIfSbupoqo/0.jpg)](https://www.youtube.com/watch?v=_HIfSbupoqo)
 
 # Requirements
 
