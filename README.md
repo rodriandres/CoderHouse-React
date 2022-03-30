@@ -94,7 +94,7 @@ The value of each variables should be on your firebase data
 
 When you already have your firebase connected with your app then you should fill the firebase documents for see the products in the E-commerce
 
-You will have to create a 3 colletions:
+You will have to create 3 colletions:
 - categories
 - itemCollection
 - orders
