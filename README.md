@@ -168,7 +168,4 @@ And store this data
             total: number
         ]
 }
-=======
-=======
-# CoderHouse-React
-React course's repository
+
