@@ -1,11 +1,12 @@
+const React = require('react');
 import './App.css';
-import Test1Jsx from './components/test1';
-import NavBar from './components/NavBar';
+import Main from './components/Main';
 
 function App() {
+
   return (
     <div className="App">
-      <NavBar/>
+        <Main/>
     </div>
   );
 }
