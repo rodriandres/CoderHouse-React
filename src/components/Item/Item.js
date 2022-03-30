@@ -8,8 +8,8 @@ const Item = ({ itemData }) =>{
         {itemData &&
             <div className="item">
                 <p>{itemData.name}</p>
-                <img className="itemDetail-img" src={itemData.pictureUrl}/>
-                <p>Categoria: {itemData.category}</p>
+                <img className="cartItemsContainer__item--img" src={itemData.pictureUrl}/>
+                <p>Category: {itemData.category}</p>
                 <footer>
                     <Link to={`/item/${itemData.id}`} className="option">Details</Link>
                 </footer>

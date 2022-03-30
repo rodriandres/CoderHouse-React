@@ -13,7 +13,7 @@ const CartWidget = () =>{
 
     return (
         <div>
-            <button className="div__cart--button">
+            <button className={({ isActive }) => isActive ? 'div__cart--button-active' : 'div__cart--button'}>
                 <Icon icon={cart}/>
                 <p className="div__cart--text"> {cartQuantity} </p>  
             </button>

@@ -6,10 +6,13 @@ import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../context/CartContext';
 import { db } from "../../services/firebase/firebase";
 import { getDocs, collection } from "firebase/firestore";
+import { useNotificationServices } from '../../services/notifications/NotificationsServices';
 
 const NavBar = () =>{
     const { cartQuantity, setCartQuantity } = useContext(CartContext);
     const [categories, setCategories] = useState([]);
+
+    const setNotification = useNotificationServices();
 
     useEffect( ()=>{
         setCartQuantity(cartQuantity);
@@ -21,9 +24,9 @@ const NavBar = () =>{
                 })
             setCategories(catego);
             
-        }).catch( (e) =>
-            console.log(e)
-        );
+        }).catch( (e) =>{ 
+            setNotification('error',`ERROR: ${e}`)
+        });
 
     }, [cartQuantity])
 
@@ -31,8 +34,8 @@ const NavBar = () =>{
         <nav className="navbar">
             <div className='navbar__logo'>
                 <NavLink className='navbar__navlink' to={`/`}>
-                    <img className="vader" src={'./images/vader.png'} alt={`Logo`} />
-                    <h2 className='navbar__navlink--text'>Zetark</h2>
+                    <img className="vader" src='./images/vader.png' alt={`Logo`} />
+                    <h2 className='navbar__navlink--text'>zetark</h2>
                     <p className='navbar__navlink--text'>Your far far away armery!!</p>
                 </NavLink>
             </div>

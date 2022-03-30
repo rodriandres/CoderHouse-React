@@ -3,35 +3,23 @@ import "../components.scss";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import CategoryNotAvariable from '../Error/CategoryNotAvariable';
-import { db } from "../../services/firebase/firebase";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getsProducts } from "../../services/firebase/firebase";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
-const ItemListContainer = ({ greeting }) =>{
+const ItemListContainer = ({ title }) =>{
     const [ products, setProducts] = useState([]);
     const { categoryId } = useParams();
 
+    const setNotification = useNotificationServices();
+
     useEffect(() => {
+        // TODO agregar el loading en esta linea
 
-        const collectionRef = categoryId? 
-            query(collection(db, 'itemCollection'), where('category', '==', categoryId)) :
-            collection(db, 'itemCollection')
-
-        getDocs(collectionRef)
-        .then( (response)=>{
-            const products = response.docs.map(doc =>{
-                    return {id: doc.id, ...doc.data()}
-                })
-            setProducts(products);
-        }).catch( (e) =>
-            console.log(e)
-        );
-
-        // getProducts(categoryId)
-        // .then( (item)=>{
-        //     setProducts(item);
-        // }).catch( (e) =>
-        //     console.log(e)
-        // );
+        getsProducts(categoryId).then((response)=>{
+            setProducts(response)
+        }).catch( (e) =>{
+            setNotification('error',`ERROR: ${e}`)
+        })
 
         return (() => {
             setProducts()
@@ -40,7 +28,7 @@ const ItemListContainer = ({ greeting }) =>{
 
     return ( 
         <div className="itemListContainer">
-            <h1>{greeting}</h1>      
+            <h1>{title}</h1>      
             {products?.length ? <ItemList items={products}/> :  <CategoryNotAvariable category={categoryId}/> }  
         
         </div>

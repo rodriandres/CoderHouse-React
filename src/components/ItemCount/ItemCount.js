@@ -3,9 +3,12 @@ import { Icon } from 'react-icons-kit'
 import {plus} from 'react-icons-kit/icomoon/plus'
 import {minus} from 'react-icons-kit/icomoon/minus'
 import { useEffect, useState } from "react";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
 const ItemCount = ( {stock = 1, initial = 1, onAdd } ) =>{
     const [ itemCount, setItemCount, ] = useState(0);
+
+    const setNotification = useNotificationServices()
 
     useEffect(() => {
         setItemCount(initial);
@@ -23,6 +26,7 @@ const ItemCount = ( {stock = 1, initial = 1, onAdd } ) =>{
             itemCount.parseNumber
             setItemCount(itemCount + 1);  
         }else{
+            setNotification('warning', 'There is no more stock available for the product');
             console.log("No hay mas stock disponible del product")
         }
     }

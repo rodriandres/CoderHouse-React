@@ -3,25 +3,24 @@ import "../components.scss";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import ItemNotFound from "../Error/ItemNotFound";
-import { db } from "../../services/firebase/firebase";
-import { getDoc, doc } from "firebase/firestore";
+import { getProduct } from "../../services/firebase/firebase";
+import { useNotificationServices } from "../../services/notifications/NotificationsServices";
 
-const ItemDetailContainer = ({ greeting }) =>{
+const ItemDetailContainer = ({ title }) =>{
     const [ product, setProduct ] = useState({});
     const { productId } = useParams();
 
-    useEffect( ()=>{
+    const setNotification = useNotificationServices();
 
-        const docRef = doc(db, 'itemCollection', productId);
+    useEffect( ()=>{
+        // TODO agregar el loading en esta linea
         
-        getDoc(docRef)
+        getProduct(productId)
         .then( (response)=>{
-            const item = {id: response.id, ...response.data()}
-            console.log(item)
-            setProduct(item);
-        }).catch( (e) =>
-            console.log(e)
-        );
+            setProduct(response);
+        }).catch( (e) =>{
+            setNotification('error',`ERROR: ${e}`)
+        })
 
         return (() => {
             setProduct()
@@ -29,9 +28,9 @@ const ItemDetailContainer = ({ greeting }) =>{
     }, [productId])
 
     return ( 
-        <div className="div--Itemlist">
-            <h1>{greeting}</h1>
-            <div className="div--Itemlistcontainer">
+        <div className="div__itemlist">
+            <h1>{title}</h1>
+            <div className="div__itemlistcontainer">
                 {product? <ItemDetail product={product}/> : <ItemNotFound itemId={productId} /> }
             </div>
         </div>
