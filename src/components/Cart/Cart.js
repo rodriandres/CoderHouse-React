@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "../components.scss";
 import CartContext from '../../context/CartContext';
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import FormView from "../Form/FormView";
 
 const Cart = () =>{
 
-    const { cart, removeItem, clearState, totalPrice, processingOrder, setProcessingOrder, updateOrder, returnProducts } = useContext(CartContext);
+    const { cart, removeItem, clearState, totalPrice, setTotalPrice, processingOrder, setProcessingOrder, updateOrder, returnProducts, totalPriceCalculator } = useContext(CartContext);
     const [ contact, setContact] = useState({
         name: '',
         phone: '',
@@ -18,6 +18,11 @@ const Cart = () =>{
     })
     const [showForm, setShowForm] = useState(false);
     const [completeData, setCompleteData] = useState(false);
+
+    useEffect(()=>{
+        setTotalPrice(0)
+        totalPriceCalculator();
+    }, [])
 
     const confirmOrder = () =>{
         setProcessingOrder(true);

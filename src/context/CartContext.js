@@ -82,20 +82,15 @@ export const CartContextProvider = ({ children }) => {
 
     const updateOrder = (order) =>{
 
-        order.items.forEach(prod => {
-            getDoc(doc(db, 'itemCollection', prod.product.id))
-            .then((res) => {
-                if(res.data().stock >= prod.quantityToAdd){
-                    addDoc(collection(db, 'orders'), order).then(({id})=>{
-                        clearState();
-                        setNotification('success',`Great! Your buy id is: ${id}`);
-                        setProcessingOrder(false);
-                })
-                } else {
-                    setNotification('error',`Error! There is not such of quantity for that item`);
-                }
-            })
-        });
+        addDoc(collection(db, 'orders'), order).then(({id})=>{
+            clearState();
+            setNotification('success',`Great! Your buy id is: ${id}`);
+            setProcessingOrder(false);
+        }).catch(()=>{
+            returnProducts(cart);
+            clearState();
+            setNotification('error',`Error! There is not such of quantity for that item`);
+        })
     }
 
     const returnProducts = (cart) => {
@@ -112,6 +107,7 @@ export const CartContextProvider = ({ children }) => {
             processingOrder,
             setProcessingOrder,
             setCartQuantity,
+            setTotalPrice,
             addItem,
             removeItem,
             clearState,
