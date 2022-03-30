@@ -15,9 +15,9 @@ function Main() {
               <NavBar/>
               <div className='div--listoOfItems'>
                 <Routes>
-                    <Route path='/' element={<ItemListContainer greeting={"Home"}/>}/>
-                    <Route path='/category/:categoryId' element={<ItemListContainer greeting={"Lista"}/>}/>
-                    <Route path='/item/:productId' element={<ItemDetailContainer greeting={"Detalle"}/>}/>
+                    <Route path='/' element={<ItemListContainer title={"Home"}/>}/>
+                    <Route path='/category/:categoryId' element={<ItemListContainer title={"List"}/>}/>
+                    <Route path='/item/:productId' element={<ItemDetailContainer title={"Detail"}/>}/>
                     <Route path='/cart' element={<Cart/>}/>
                   </Routes>
               </div>

@@ -7,9 +7,9 @@ import {notification} from 'react-icons-kit/icomoon/notification'
 
 const Notification = ({ message='Test', severity}) => {
     const notificationStyles = {
-        position: 'absolute',
-        top: '60%',
-        right: '50%',
+        position: 'fixed',
+        bottom: '3%',
+        right: '40%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

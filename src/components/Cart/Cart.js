@@ -3,10 +3,12 @@ import "../components.scss";
 import CartContext from '../../context/CartContext';
 import { Link } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
+import Form from "../Form/Form";
+import FormView from "../Form/FormView";
 
 const Cart = () =>{
 
-    const { cart, removeItem, clearState, totalPrice, processingOrder, setProcessingOrder, updateOrder } = useContext(CartContext);
+    const { cart, removeItem, clearState, totalPrice, processingOrder, setProcessingOrder, updateOrder, returnProducts } = useContext(CartContext);
     const [ contact, setContact] = useState({
         name: '',
         phone: '',
@@ -14,20 +16,14 @@ const Cart = () =>{
         email: '',
         comment: '',
     })
+    const [showForm, setShowForm] = useState(false);
+    const [completeData, setCompleteData] = useState(false);
 
     const confirmOrder = () =>{
         setProcessingOrder(true);
 
-        setContact({    
-            name: 'rodri',
-            phone: '1125262134',
-            address: 'guatemala 23',
-            email: 'rodriguatemala@hotmail.com',
-            comment: 'ALTOS PRODUCTOS ME LLEVOO',
-        })
-
         const order = {
-            user: contact,
+            buyer: contact,
             items: cart,
             total: totalPrice,
             date: Timestamp.fromDate(new Date()),
@@ -37,10 +33,13 @@ const Cart = () =>{
             return <h1>La orden esta siendo procesada</h1>
         }
 
-        console.log(order);
-
         updateOrder(order);
 
+    }
+
+    const clearCart = () => {
+        returnProducts(cart);
+        clearState();
     }
 
  
@@ -48,27 +47,46 @@ const Cart = () =>{
 
     return (
         <ul>
-            {!processingOrder && cart.length > 0 && <button type="button" onClick={()=>clearState()}>Remove all productos of my cart</button>}
-            {cart?.length ? cart.map(( item ) =>(
-                    <div key={item.product.id}>
-                        <h2>{item.product.name}</h2>
-                        <img className="itemDetail-img" src={item.product.pictureUrl}/>
-                        <p>Category: {item.product.category}</p>
-                        <p>Quantity: {item.quantityToAdd}</p>
-                        <p>Unit Price: {item.product.price}</p>
-                        <p>Total Price: {item.product.price * item.quantityToAdd}</p>
-                        <button type="button" onClick={()=>removeItem(item.product.id)}>Remove</button>
+            {!processingOrder && cart.length > 0 && <button type="button" onClick={clearCart}>Remove all productos of my cart</button>}
+            <div></div>
+            <div className="cartItemsContainer">
+                {cart?.length ? cart.map(( item ) =>(
+                        <div key={item.product.id} className="cartItemsContainer__item">
+                            <h2>{item.product.name}</h2>
+                            <img className="cartItemsContainer__item--img" src={item.product.pictureUrl}/>
+                            <p>Category: {item.product.category}</p>
+                            <p>quantity: {item.quantityToAdd}</p>
+                            <p>unit Price: {item.product.price}</p>
+                            <p>Total Price: {item.product.price * item.quantityToAdd}</p>
+                            <button type="button" disabled={processingOrder} onClick={()=>removeItem(item, item.quantityToAdd)}>Remove</button>
+                        </div>
+                    )) : 
+                    <div>
+                        <h1>Your Cart is empty</h1> 
+                        <h1>Click the button below to</h1> 
+                        <Link to={`/`} className="option">Keep buying </Link>
                     </div>
-            )) : 
-            <div>
-                <h1>Your Cart is empty</h1> 
-                <h1>Click the button below to</h1> 
-                <Link to={`/`} className="option">Keep buying </Link>
-            </div> }  
-            {!processingOrder && cart.length > 0 &&
+                }
+            </div> 
+            
+            {!processingOrder && cart.length > 0 && !showForm && 
+                   <div>
+                        <button onClick={()=>setShowForm(true)}><h1>Continue</h1></button>
+                    </div>
+            }
+            
+            {!processingOrder && cart.length > 0 && showForm && !completeData && 
+                    <Form setContact={setContact} setCompleteData={setCompleteData} />
+            }
+
+            {!processingOrder && cart.length > 0 && showForm && completeData && 
+                    <FormView contact={contact} setCompleteData={setCompleteData} />
+            }
+
+            {!processingOrder && cart.length > 0 && showForm &&
                    <div>
                         <h2>Total Price: ${totalPrice}</h2>
-                        <button onClick={()=>confirmOrder()}><h1>Confirm Order</h1></button>
+                        <button disabled={contact.name == '' && contact.phone == '' && contact.address == '' && contact.email == '' } onClick={()=>confirmOrder()}><h1>Confirm order</h1></button>
                     </div>
             }
         </ul>
